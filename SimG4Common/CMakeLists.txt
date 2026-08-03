@@ -12,9 +12,9 @@ gaudi_add_library(SimG4Common
                        DD4hep::DDCore
                        DD4hep::DDG4
 )
-#target_include_directories(SimG4Common PUBLIC ${Geant4_INCLUDE_DIRS}
-#  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
-#  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_include_directories(SimG4Common PUBLIC ${Geant4_INCLUDE_DIRS}
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 install(TARGETS SimG4Common
   EXPORT k4SimGeant4Targets
