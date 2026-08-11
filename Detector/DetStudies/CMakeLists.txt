@@ -8,6 +8,7 @@ find_package(ROOT COMPONENTS MathCore GenVector Geom Tree)
 #--- Add main module
 file(GLOB _sources src/components/*.cpp)
 gaudi_add_module(DetStudies
+                 PACKAGE
                  SOURCES ${_sources}
                  LINK
                       DD4hep::DDCore

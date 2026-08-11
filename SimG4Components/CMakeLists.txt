@@ -5,6 +5,7 @@
 
 file(GLOB _lib_sources src/*.cpp)
 gaudi_add_module(SimG4Components
+                 PACKAGE
                  SOURCES ${_lib_sources}
                  LINK
                       CLHEP::CLHEP

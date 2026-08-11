@@ -5,6 +5,7 @@
 #--- Add main module
 file(GLOB _sources src/*.cpp)
 gaudi_add_module(DetComponents
+                 PACKAGE
                  SOURCES ${_sources}
                  LINK
                       DD4hep::DDCore

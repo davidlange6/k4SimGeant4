@@ -13,5 +13,6 @@ gaudi_add_library(SimG4Full
 
 file(GLOB _module_sources src/components/*.cpp)
 gaudi_add_module(SimG4FullPlugins
+                 PACKAGE
                  SOURCES ${_module_sources}
                  LINK SimG4Full SimG4Common SimG4Interface k4FWCore::k4FWCore EDM4HEP::edm4hep)
