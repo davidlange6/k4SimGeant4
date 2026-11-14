@@ -118,10 +118,14 @@ StatusCode SimG4Svc::initialize() {
     info() << "Random numbers seeds: " << CLHEP::HepRandom::getTheSeeds()[0] << "\t"
            << CLHEP::HepRandom::getTheSeeds()[1] << endmsg;
   } else {
+    // Geant4 draws from the CLHEP::HepRandom engine, which is distinct from the engine owned by
+    // RndmGenSvc, so it has to be seeded explicitly; otherwise seedValue has no effect on the simulation.
+    // (The RndmGenSvc engine is still reseeded as before, for backward compatibility.)
     m_randSvc->engine()->setSeeds({m_seedValue}).ignore();
-    std::vector<long> seedsVec;
-    m_randSvc->engine()->seeds(seedsVec).ignore();
-    info() << "Random numbers seeds: " << seedsVec << endmsg;
+    long seeds[2] = {m_seedValue, 0};
+    CLHEP::HepRandom::setTheSeeds(seeds);
+    info() << "Random numbers seeds: " << CLHEP::HepRandom::getTheSeeds()[0] << "\t"
+           << CLHEP::HepRandom::getTheSeeds()[1] << endmsg;
   }
 
   if (!m_runManager.start()) {
